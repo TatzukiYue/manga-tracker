@@ -30,22 +30,38 @@ A web-based manga tracking application built with React and Supabase.
 
 ```bash
 git clone https://github.com/TatzukiYue/manga-tracker.git
+```
 
 2. Navigate to the project folder:
+
+```bash
 cd manga-tracker
+```
 
 3. Install dependencies:
-npm install
 
-4. Create a .env file in the project root and add your Supabase credentials:
+```bash
+npm install
+```
+
+4. Create a `.env` file in the project root and add your Supabase credentials:
+
+```env
 VITE_SUPABASE_URL=your_supabase_url
 VITE_SUPABASE_PUBLISHABLE_KEY=your_supabase_publishable_key
+```
 
 5. Start the development server:
+
+```bash
 npm run dev
+```
 
 The application will then be available at:
+
+```text
 http://localhost:5173
+```
 
 Environment Variables
 This project uses Supabase for database storage.
