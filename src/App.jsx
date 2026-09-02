@@ -63,6 +63,7 @@ function App() {
   }
 
   function handlePaste(event) {
+    
     const items = event.clipboardData.items
 
     for (const item of items) {
@@ -188,6 +189,16 @@ function App() {
 
     return matchesOrigin && matchesSearch
   })
+
+  useEffect(() => {
+    if (!showForm) return
+
+    document.addEventListener('paste', handlePaste)
+
+    return () => {
+      document.removeEventListener('paste', handlePaste)
+    }
+  }, [showForm])
 
   return (
     <div className="app-layout">
@@ -346,7 +357,12 @@ function App() {
 
                 <div className="cover-section">
                   <label>Cover image</label>
-                  <div className="paste-area" onPaste={handlePaste} tabIndex="0">
+                  <div
+                      className="paste-area"
+                      onPaste={handlePaste}
+                      onClick={(event) => event.currentTarget.focus()}
+                      tabIndex="0"
+                    >
                     {newManga.image ? (
                       <img src={newManga.image} alt="Preview" className="image-preview" />
                     ) : (
