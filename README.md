@@ -63,9 +63,9 @@ The application will then be available at:
 http://localhost:5173
 ```
 
-Environment Variables
+## Environment Variables
 This project uses Supabase for database storage.
 Create a .env file based on .env.example and add your Supabase project credentials.
 
-Author
+## Author
 Created as a personal manga tracking project.
