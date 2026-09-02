@@ -1,0 +1,684 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background: #171820;
+  color: #e5e7eb;
+  font-family: Arial, sans-serif;
+}
+
+.app-layout {
+  min-height: 100vh;
+  display: flex;
+}
+
+
+/* =========================
+   SIDEBAR
+========================= */
+
+.sidebar {
+  width: 220px;
+  min-height: 100vh;
+  background: #1d1e27;
+  border-right: 1px solid #343542;
+  padding: 35px 20px;
+}
+
+.sidebar-title {
+  margin-bottom: 45px;
+}
+
+.sidebar-title h2 {
+  margin: 0;
+  font-size: 1.7rem;
+}
+
+.sidebar-title p {
+  margin-top: 5px;
+  color: #9ca3af;
+}
+
+
+/* =========================
+   BOOKMARKS
+========================= */
+
+.bookmark-list {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.bookmark {
+  position: relative;
+  border: none;
+  background: #292b36;
+  color: #d1d5db;
+
+  padding: 14px 18px;
+
+  text-align: left;
+
+  font-size: 1rem;
+
+  cursor: pointer;
+
+  border-radius: 0 8px 8px 0;
+
+  transition: 0.2s ease;
+}
+
+.bookmark::before {
+  content: "";
+
+  position: absolute;
+
+  left: 0;
+  top: 0;
+
+  width: 6px;
+  height: 100%;
+
+  background: #555;
+
+  border-radius: 4px 0 0 4px;
+}
+
+.bookmark:hover {
+  transform: translateX(5px);
+  background: #343645;
+}
+
+.bookmark.active {
+  background: #3a3d4d;
+  color: white;
+  transform: translateX(8px);
+}
+
+.bookmark.active::before {
+  background: #8b5cf6;
+}
+
+.bookmark span {
+  margin-right: 10px;
+}
+
+
+/* =========================
+   MAIN CONTENT
+========================= */
+
+.main-content {
+  flex: 1;
+
+  width: 100%;
+  
+  margin: 0;
+
+  padding: 40px 48px;
+}
+
+header {
+  display: flex;
+
+  justify-content: space-between;
+
+  align-items: center;
+
+  margin-bottom: 50px;
+}
+
+header h1 {
+  margin: 0;
+  font-size: 2.5rem;
+}
+
+header p {
+  margin-top: 8px;
+  color: #9ca3af;
+}
+
+
+/* =========================
+   BUTTONS
+========================= */
+
+.add-button {
+  padding: 12px 20px;
+
+  border-radius: 8px;
+
+  border: none;
+
+  background: #2d2f3d;
+
+  color: white;
+
+  font-weight: bold;
+
+  cursor: pointer;
+
+  transition: 0.2s ease;
+}
+
+.add-button:hover {
+  background: #3b3e50;
+}
+
+
+/* =========================
+   LIBRARY
+========================= */
+
+.library-section h2 {
+  text-align: center;
+  font-size: 1.8rem;
+}
+
+.search-bar {
+  display: flex;
+
+  gap: 12px;
+
+  margin: 20px 0 30px;
+}
+
+input,
+select,
+textarea {
+  padding: 12px;
+
+  border-radius: 8px;
+
+  border: 1px solid #444;
+
+  background: #1f1f1f;
+
+  color: white;
+
+  font-size: 1rem;
+}
+
+.search-bar input {
+  flex: 1;
+}
+
+textarea {
+  min-height: 100px;
+  resize: vertical;
+}
+
+
+/* =========================
+   MANGA GRID
+========================= */
+
+.manga-grid {
+  display: grid;
+
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+
+  gap: 24px;
+}
+
+article {
+  background: #292929;
+
+  border-radius: 12px;
+
+  overflow: hidden;
+
+  cursor: pointer;
+
+  transition: transform 0.2s ease;
+}
+
+article:hover {
+  transform: translateY(-5px);
+}
+
+.cover-container {
+  height: 280px;
+
+  display: flex;
+
+  justify-content: center;
+
+  align-items: center;
+
+  background: #3a3a3a;
+
+  color: #aaa;
+
+  overflow: hidden;
+}
+
+.manga-cover {
+  width: 100%;
+  height: 100%;
+
+  object-fit: cover;
+}
+
+.card-content {
+  padding: 18px;
+}
+
+.card-content h3 {
+  margin: 0 0 10px;
+}
+
+.card-content p {
+  margin: 6px 0;
+  color: #aaa;
+}
+
+.empty-library {
+  color: #aaa;
+}
+
+
+/* =========================
+   MODAL
+========================= */
+
+.modal-overlay {
+  position: fixed;
+
+  inset: 0;
+
+  background: rgba(0, 0, 0, 0.65);
+
+  display: flex;
+
+  justify-content: center;
+
+  align-items: center;
+
+  padding: 20px;
+
+  z-index: 1000;
+}
+
+.modal {
+  width: min(600px, 100%);
+
+  max-height: 90vh;
+
+  overflow-y: auto;
+
+  background: #24252f;
+
+  border: 1px solid #3a3b48;
+
+  border-radius: 16px;
+
+  padding: 25px;
+
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+}
+
+.modal-header {
+  display: flex;
+
+  justify-content: space-between;
+
+  align-items: center;
+
+  margin-bottom: 20px;
+}
+
+.modal-header h2 {
+  margin: 0;
+}
+
+.close-button {
+  border: none;
+
+  background: transparent;
+
+  color: #aaa;
+
+  font-size: 1.4rem;
+
+  cursor: pointer;
+}
+
+.close-button:hover {
+  color: white;
+}
+
+
+/* =========================
+   FORM
+========================= */
+
+form {
+  display: flex;
+
+  flex-direction: column;
+
+  gap: 14px;
+}
+
+.paste-area {
+  min-height: 200px;
+
+  border: 2px dashed #555;
+
+  border-radius: 12px;
+
+  display: flex;
+
+  justify-content: center;
+
+  align-items: center;
+
+  cursor: pointer;
+
+  overflow: hidden;
+
+  color: #aaa;
+}
+
+.paste-area:focus {
+  outline: 2px solid #8b5cf6;
+}
+
+.image-preview {
+  width: 100%;
+
+  max-height: 350px;
+
+  object-fit: contain;
+}
+
+
+/* =========================
+   MODAL BUTTONS
+========================= */
+
+.modal-actions {
+  display: flex;
+
+  justify-content: flex-end;
+
+  gap: 12px;
+}
+
+.cancel-button,
+.save-button {
+  padding: 12px 20px;
+
+  border-radius: 8px;
+
+  border: none;
+
+  cursor: pointer;
+
+  font-weight: bold;
+}
+
+.cancel-button {
+  background: #383946;
+  color: white;
+}
+
+.save-button {
+  background: #5b4bb7;
+  color: white;
+}
+
+.save-button:hover {
+  background: #6c5ce7;
+}
+
+/* =========================
+   ADD MANGA FORM LAYOUT
+========================= */
+
+.modal {
+  width: min(800px, 90vw);
+  max-height: 90vh;
+  overflow-y: auto;
+}
+
+.modal form {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.form-top-section {
+  display: grid;
+  grid-template-columns: 1.15fr 0.85fr;
+  gap: 28px;
+  padding-bottom: 26px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.form-fields {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.input-group {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.input-group label,
+.cover-section > label {
+  font-size: 1rem;
+  font-weight: 500;
+}
+
+.input-group input,
+.input-group select,
+.input-group textarea {
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.cover-section {
+  display: flex;
+  flex-direction: column;
+}
+
+.cover-section > label {
+  margin-bottom: 14px;
+}
+
+.paste-area {
+  height: 305px;
+  border: 1px dashed rgba(255, 255, 255, 0.3);
+  border-radius: 12px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  overflow: hidden;
+  cursor: pointer;
+}
+
+.paste-area:focus {
+  outline: none;
+  border-color: #8b5cf6;
+}
+
+.paste-placeholder {
+  text-align: center;
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.paste-placeholder p {
+  margin: 14px 0 0;
+  line-height: 1.6;
+}
+
+.image-icon {
+  font-size: 3.5rem;
+  color: #8b5cf6;
+}
+
+.image-preview {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.image-info {
+  text-align: center;
+  margin: 12px 0 0;
+  line-height: 1.5;
+  font-size: 0.85rem;
+  color: rgba(255, 255, 255, 0.55);
+}
+
+.form-bottom-section {
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
+}
+
+.form-bottom-section textarea {
+  min-height: 100px;
+  resize: vertical;
+}
+
+.modal-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 12px;
+}
+
+
+/* Mobile layout */
+
+@media (max-width: 700px) {
+
+  .form-top-section {
+    grid-template-columns: 1fr;
+  }
+
+  .paste-area {
+    height: 250px;
+  }
+
+}
+
+/* =========================
+   MOBILE
+========================= */
+
+@media (max-width: 800px) {
+
+  .app-layout {
+    flex-direction: column;
+  }
+
+  .sidebar {
+    width: 100%;
+
+    min-height: auto;
+
+    padding: 20px;
+
+    border-right: none;
+
+    border-bottom: 1px solid #343542;
+  }
+
+  .sidebar-title {
+    margin-bottom: 20px;
+  }
+
+  .bookmark-list {
+    flex-direction: row;
+
+    overflow-x: auto;
+  }
+
+  .bookmark {
+    white-space: nowrap;
+
+    border-radius: 8px;
+  }
+
+  .bookmark:hover,
+  .bookmark.active {
+    transform: none;
+  }
+
+  .main-content {
+    width: 90%;
+  }
+
+  header {
+    flex-direction: column;
+
+    align-items: flex-start;
+
+    gap: 20px;
+  }
+
+  .search-bar {
+    flex-direction: column;
+  }
+}
+/* =========================
+   CRUD CARD ACTIONS
+========================= */
+
+.card-actions {
+  display: flex;
+  gap: 10px;
+  margin-top: 16px;
+}
+
+.card-actions button {
+  flex: 1;
+  border: none;
+  border-radius: 8px;
+  padding: 9px 10px;
+  cursor: pointer;
+  font-weight: 600;
+}
+
+.edit-button {
+  background: #45455a;
+  color: white;
+}
+
+.edit-button:hover {
+  background: #575773;
+}
+
+.delete-button {
+  background: #6b3030;
+  color: white;
+}
+
+.delete-button:hover {
+  background: #873b3b;
+}
+
+.database-error {
+  color: #ff8d8d;
+  background: rgba(180, 50, 50, 0.15);
+  border: 1px solid rgba(255, 100, 100, 0.25);
+  border-radius: 8px;
+  padding: 10px 14px;
+  margin: 0 0 16px;
+}
+
+.save-button:disabled {
+  opacity: 0.65;
+  cursor: not-allowed;
+}
